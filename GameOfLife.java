@@ -70,17 +70,17 @@ public class GameOfLife {
 		In in = new In(fileName); // Constructs an In object for reading the input file
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
-		int[][] board = new int[rows + 2][cols + 2];
-		//int[][] board = new int[rows][cols];
+		// int[][] board = new int[rows + 2][cols + 2];
+		int[][] board = new int[rows][cols];
 		//// Replace the following statement with your code.
 
-		for (int i = 1; i < rows; i++) {
+		for (int i = 0; i < rows; i++) {
 			String s = in.readLine();
 
 			if (s != "") {
 				for (int j = 0; j < s.length(); j++) {
 					if (s.charAt(j) == 'x') {
-						board[i][j + 1] = 1;
+						board[i][j] = 1;
 					}
 				}
 			}
@@ -168,7 +168,7 @@ public class GameOfLife {
 
 		for (int i = 0; i < numOfRows; i++) {
 			for (int j = 0; j < numOfColumns; j++) {
-				System.out.printf("%4s", arr[i][j]);
+				System.out.printf("%3s", arr[i][j]);
 			}
 			System.out.println();
 		}
