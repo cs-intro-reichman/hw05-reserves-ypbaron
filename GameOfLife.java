@@ -74,13 +74,13 @@ public class GameOfLife {
 		//int[][] board = new int[rows][cols];
 		//// Replace the following statement with your code.
 
-		for (int i = 0; i < rows; i++) {
+		for (int i = 1; i < rows; i++) {
 			String s = in.readLine();
 
 			if (s != "") {
 				for (int j = 0; j < s.length(); j++) {
 					if (s.charAt(j) == 'x') {
-						board[i][j] = 1;
+						board[i][j + 1] = 1;
 					}
 				}
 			}
