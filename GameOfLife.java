@@ -13,14 +13,14 @@ public class GameOfLife {
 	public static void main(String[] args) {
 		// String fileName = args[0];
 
-		String fileName = "line.dat";
+		String fileName = "square.dat";
 
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		////test1(fileName);
-		//test2(fileName);
+		test2(fileName);
 		//test3(fileName, 3);
-		play(fileName);
+		///play(fileName);
 	}
 	
 	// Reads the data file and prints the initial board.
@@ -35,8 +35,8 @@ public class GameOfLife {
 		int[][] board = read(fileName);
 		//// Write here code that tests that the count and cellValue functions
 		//// are working properly, and returning the correct values.
-		System.out.println(count(board, 1, 2));
-		System.out.println(cellValue(board, 1, 2));
+		System.out.println(count(board, 4, 3));
+		System.out.println(cellValue(board, 4, 3));
 	}
 		
 	// Reads the data file, plays the game for Ngen generations, 
@@ -98,8 +98,8 @@ public class GameOfLife {
 		 int colsLen = board[0].length;
 		 int[][] evolvedBoard = new int[rowsLen][colsLen];
 
-		 for (int i = 0; i < rowsLen; i++){
-			for (int j = 0; j < colsLen; j++){
+		 for (int i = 1; i < rowsLen - 1; i++){
+			for (int j = 1; j < colsLen - 1; j++){
 				evolvedBoard[i][j] = cellValue(board, i, j);
 			}
 		 }
@@ -118,6 +118,10 @@ public class GameOfLife {
 	public static int cellValue(int[][] board, int i, int j) {
 		//// Replace the following statement with your code.
 		int livingNeighbors = count(board, i, j);
+		
+		i--; // the board starts from 1
+		j--; // the board starts from 1
+
 		boolean cellIsAlive = board[i][j] == 1;
 
 		if (cellIsAlive && livingNeighbors < 2){
@@ -140,6 +144,8 @@ public class GameOfLife {
 	// Assumes that i is at least 1 and at most the number of rows in the board - 1. 
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	public static int count(int[][] board, int i, int j) {
+		i--;
+		j--;
 		int livingNeighbors = 0;
 		int rowsLen = board.length;
 		int colsLen = board[0].length;
