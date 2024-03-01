@@ -13,13 +13,13 @@ public class GameOfLife {
 	public static void main(String[] args) {
 		// String fileName = args[0];
 
-		String fileName = "square.dat";
+		String fileName = "line.dat";
 
 		//// Uncomment the test that you want to execute, and re-compile.
 		//// (Run one test at a time).
 		////test1(fileName);
-		test2(fileName);
-		//test3(fileName, 3);
+		///test2(fileName);
+		test3(fileName, 3);
 		///play(fileName);
 	}
 	
@@ -35,8 +35,8 @@ public class GameOfLife {
 		int[][] board = read(fileName);
 		//// Write here code that tests that the count and cellValue functions
 		//// are working properly, and returning the correct values.
-		System.out.println(count(board, 4, 3));
-		System.out.println(cellValue(board, 4, 3));
+		System.out.println(count(board, 3, 3));
+		System.out.println(cellValue(board, 3, 3));
 	}
 		
 	// Reads the data file, plays the game for Ngen generations, 
@@ -70,17 +70,16 @@ public class GameOfLife {
 		In in = new In(fileName); // Constructs an In object for reading the input file
 		int rows = Integer.parseInt(in.readLine());
 		int cols = Integer.parseInt(in.readLine());
-		// int[][] board = new int[rows + 2][cols + 2];
-		int[][] board = new int[rows][cols];
+		int[][] board = new int[rows + 2][cols + 2];
 		//// Replace the following statement with your code.
 
-		for (int i = 0; i < rows; i++) {
+		for (int i = 1; i < rows +1; i++) {
 			String s = in.readLine();
 
 			if (s != "") {
 				for (int j = 0; j < s.length(); j++) {
 					if (s.charAt(j) == 'x') {
-						board[i][j] = 1;
+						board[i][j + 1] = 1;
 					}
 				}
 			}
@@ -98,8 +97,8 @@ public class GameOfLife {
 		 int colsLen = board[0].length;
 		 int[][] evolvedBoard = new int[rowsLen][colsLen];
 
-		 for (int i = 1; i < rowsLen - 1; i++){
-			for (int j = 1; j < colsLen - 1; j++){
+		 for (int i = 1; i < rowsLen -1; i++){
+			for (int j = 1; j < colsLen -1; j++){
 				evolvedBoard[i][j] = cellValue(board, i, j);
 			}
 		 }
@@ -118,9 +117,6 @@ public class GameOfLife {
 	public static int cellValue(int[][] board, int i, int j) {
 		//// Replace the following statement with your code.
 		int livingNeighbors = count(board, i, j);
-		
-		i--; // the board starts from 1
-		j--; // the board starts from 1
 
 		boolean cellIsAlive = board[i][j] == 1;
 
@@ -144,8 +140,6 @@ public class GameOfLife {
 	// Assumes that i is at least 1 and at most the number of rows in the board - 1. 
 	// Assumes that j is at least 1 and at most the number of columns in the board - 1. 
 	public static int count(int[][] board, int i, int j) {
-		i--;
-		j--;
 		int livingNeighbors = 0;
 		int rowsLen = board.length;
 		int colsLen = board[0].length;
@@ -172,8 +166,8 @@ public class GameOfLife {
 		int numOfRows = arr[0].length;
 		int numOfColumns = arr.length;
 
-		for (int i = 0; i < numOfRows; i++) {
-			for (int j = 0; j < numOfColumns; j++) {
+		for (int i = 1; i < numOfRows -1; i++) {
+			for (int j = 1; j < numOfColumns -1; j++) {
 				System.out.printf("%3s", arr[i][j]);
 			}
 			System.out.println();
